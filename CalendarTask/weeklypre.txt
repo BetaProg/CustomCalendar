@@ -1,0 +1,75 @@
+function getDaysInMonth(month, year) {
+	 var date = new Date(year, month, 1);
+	 var days = [];
+	 while (date.getMonth() === month) {
+		days.push(new Date(date));
+		date.setDate(date.getDate() + 1);
+	 }
+	 dayname = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	 monthnames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	 $('#monthDisplay').html("");
+	return days.reduce((acc, date) => (acc[date.getDate()] = dayname[date.getDay()], acc), {});
+}
+	var month = new Date().getMonth(), year = new Date().getFullYear();
+	var allweek = getDaysInMonth(month, year);
+	
+	dayname.map(day => getweekly(allweek, day))
+	$('.month-year').html(monthnames[month]+" - "+year);
+	
+	function getweekly(allweek, weekname){
+		var weeklist = Object.keys(allweek).reduce((a,c) => {
+		  if(allweek[c] == weekname) {
+			a[c] = allweek[c];
+			for(var i = 0;i<31;i++){
+				if(i<7-c){
+					continue;
+				}
+				// $('.clndr-week:nth-of-type('+i+')')	
+				$('.clndr-week:nth-of-type('+i+').clndr-col-'+weekname).append("<div class='clndr-day'>"+c+"</div>"+"<br>")
+			}
+			// $('.clndr-week:nth-of-type('+i+').clndr-col-'+weekname).append("<div class='clndr-day'>"+c+"</div>"+"<br>")
+		  }
+		   return a;
+		},{});
+	}
+	
+    $('#monthDisplay').html(getDaysInMonth(month, year))
+	$('#prevMonth').on('click', function(){
+		month--;
+		if(month<0){
+			month = 11;
+		}
+		if(month%11==0 && month == 11){
+			year--;
+			month = new Date().getMonth();
+		}
+		var months = [];
+		var allweek = getDaysInMonth(month, year);
+		$('.clndr-week').html("");
+		$('.month-year').html(monthnames[month]+" - "+year);
+		dayname.map(day => getweekly(allweek, day));
+	})
+	$('#nextMonth').on('click', function(){
+		month++;
+		if(month%12==0){
+			year++;
+			month = 0;
+		}
+		$('.clndr-week').html("");
+		var allweek = getDaysInMonth(month, year);
+		$('.month-year').html(monthnames[month]+" - "+year);
+		dayname.map(day => getweekly(allweek, day));
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+

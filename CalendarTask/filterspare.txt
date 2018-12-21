@@ -1,0 +1,72 @@
+function getDaysInMonth(month, year) {
+	 var date = new Date(year, month, 1);
+	 var days = [];
+	 while (date.getMonth() === month) {
+		days.push(new Date(date));
+		date.setDate(date.getDate() + 1);
+	 }
+	 dayname = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	 monthnames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	 $('#monthDisplay').html("");
+	// days.map(day => $('#monthDisplay').append("<div class='dayelement'>"+day.getDate()+"-"+dayname[day.getDay()].substr(0, 3)+"<br>"+monthnames[month%12].substr(0, 3)+"-"+year+"</div>"));
+	// return days.map(day => dayname[day.getDay()].substr(0, 3))
+	// return days.reduce( (acc, day) => days.assign(acc, { [days.getDate()]:  dayname[day.getDay()].substr(0, 3)}), {} );
+	// return days.reduce((acc, date)=> (date.getDate(), dayname[date.getDay()].substr(0, 3), {}));
+	return days.reduce((acc, date) => (acc[date.getDate()] = dayname[date.getDay()].substr(0, 3), acc), {});
+	// (day => date: day.getDate(), day: dayname[day.getDay()].substr(0, 3))
+}
+    var month = new Date().getMonth(), year = new Date().getFullYear();
+	// console.log(getDaysInMonth(month, year));
+	var allweek = getDaysInMonth(month, year);
+	// allweek2 = new Array(allweek);
+	console.log(allweek);
+	// console.log(typeof allweek);
+	// var sat = allweek.filter((allweek, sat => sat==="Sun"));
+	// allweek.forEach(function(sats){
+		// if(sats=="Thu"){
+			// console.log(allweek.indexOf(sats));
+		// }
+	// })
+	// console.log(sat);
+	var newobj = Object.keys(allweek).reduce((a,c) => {
+	  if(allweek[c] == "Sat") 
+	   a[c] = allweek[c]; return a;
+	},{});
+	console.log(newobj);
+	
+    $('#monthDisplay').html(getDaysInMonth(month, year))
+	$('#prevMonth').on('click', function(){
+		month--;
+		if(month<0){
+			month = 11;
+		}
+		if(month%11==0 && month == 11){
+			year--;
+			month = new Date().getMonth();
+		}
+		var months = [];
+		$('#monthDisplay').html(getDaysInMonth(month, year));
+	})
+	$('#nextMonth').on('click', function(){
+		month++;
+		if(month%12==0){
+			year++;
+			month = 0;
+		}
+		$('#monthDisplay').html(getDaysInMonth(month, year));
+		// if()
+			// clndr-week
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+

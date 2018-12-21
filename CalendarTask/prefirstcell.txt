@@ -1,0 +1,78 @@
+function getDaysInMonth(month, year) {
+	 var date = new Date(year, month, 1);
+	 var days = [];
+	 while (date.getMonth() === month) {
+		days.push(new Date(date));
+		date.setDate(date.getDate() + 1);
+	 }
+	 dayname = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	 monthnames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	 $('#monthDisplay').html("");
+	return days.reduce((acc, date) => (acc[date.getDate()] = dayname[date.getDay()], acc), {});
+}
+	
+	// console.log(allweek);
+	var month = new Date().getMonth(), year = new Date().getFullYear();
+	var allweek = getDaysInMonth(month, year);
+	
+	dayname.map(day => getweekly(allweek, day))
+	
+	function getweekly(allweek, weekname){
+		var weeklist = Object.keys(allweek).reduce((a,c) => {
+		  if(allweek[c] == weekname) {
+			a[c] = allweek[c];
+			$('.clndr-col-'+weekname).append("<div class='clndr-day'>"+c+"</div>"+"<br>")
+		  }
+		   return a;
+		},{});
+		// return (weeklist);
+		console.log(weeklist);
+		// $('.clndr-col-'+weekname).text(weeklist[c])
+	}
+	
+	
+	
+    $('#monthDisplay').html(getDaysInMonth(month, year))
+	$('#prevMonth').on('click', function(){
+		month--;
+		if(month<0){
+			month = 11;
+		}
+		if(month%11==0 && month == 11){
+			year--;
+			month = new Date().getMonth();
+		}
+		var months = [];
+		// $('#monthDisplay').html(getDaysInMonth(month, year));
+		// getDaysInMonth(month, year);
+		// var month = new Date().getMonth(), year = new Date().getFullYear();
+		var allweek = getDaysInMonth(month, year);
+		$('.clndr-week').html("");
+		dayname.map(day => getweekly(allweek, day));
+	})
+	$('#nextMonth').on('click', function(){
+		month++;
+		if(month%12==0){
+			year++;
+			month = 0;
+		}
+		// $('#monthDisplay').html(getDaysInMonth(month, year));
+		$('.clndr-week').html("");
+		// getDaysInMonth(month, year);
+		// var month = new Date().getMonth(), year = new Date().getFullYear();
+		var allweek = getDaysInMonth(month, year);
+		dayname.map(day => getweekly(allweek, day));
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+

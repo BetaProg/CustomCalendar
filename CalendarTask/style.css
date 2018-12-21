@@ -1,0 +1,60 @@
+body{
+	font-family:calibri;
+}
+.dayelement{
+	width: 50px;
+	height:80px;
+	border: 1px solid #000;
+	float:left;
+	padding:5px 0px 0px 15px;
+	transform:translate(50%)
+}
+.clndr-week{
+	float:left;
+	height:60px;
+	width:60px;
+	border:1px solid #ddd;
+	margin:1%;
+}
+.clndr-day{
+	text-align:center;
+	height:60px;
+	width:60px;
+	border:1px solid #ddd;
+	line-height: 50px;
+}
+.clndr-day:hover{
+	border-radius:50%;
+	background-color: yellowgreen;
+    color: #fff;
+	border: 2px solid #fff;
+}
+.month-year{
+	float:left;
+	margin: 0% 0% 0% 0%;
+	padding:1% 5%;
+}
+button{
+	float:left;
+	margin: 4% 0% 0% 0%;
+}
+.clndr-head{
+	height:60px;
+	width:70px;
+	float:left;
+	text-align:center;
+	color: yellowgreen
+}
+.clndr-head-container{
+	width:100%;
+	float:left;
+}
+.clndr-btn-container{
+	width:100%;
+	margin:auto;
+}
+.calendarSkeleton{
+	width:80%;
+	height:80%;
+	margin:auto;
+}
